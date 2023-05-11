@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  {% load static %}
+  <title>RegistrationForm</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet"  href="{% static 'register.css'%}">
+</head>
+
+<body>
+	<div class="container">
+		<div class="title">RegistrationForm (LIBRARIAN)</div>
+		<form action="." method = "POST">
+		{%csrf_token%}
+			<div class="user-details">
+				
+				<div class="input-box">
+					<span class="details">Username</span>
+					{{form.admin_name}}
+					{% comment %} <input type="text" placeholder="Enter a username" required name="admin_name"> {% endcomment %}
+				</div>
+				<div class="input-box">
+					<span class="details">Id-number</span>
+					{{form.libralian_no}}
+					{% comment %} <input type="number" placeholder="Enter a valid number" required name = "admin_id"> {% endcomment %}
+				</div>
+				<div class="input-box">
+					<span class="details">Email</span>
+					{{form.admin_email}}
+					{% comment %} <input type="mail" placeholder="Enter your user email" required name="admin_email"> {% endcomment %}
+				</div>
+				<div class="input-box">
+					<span class="details">Password</span>
+					{{form.admin_password}}
+					{% comment %} <input type="password" placeholder="Enter your Password" required name="admin_password"> {% endcomment %}
+				</div>
+				
+			</div>
+			<div class="button">
+				<input type="submit" value="Register">
+			</div>
+			<p>Already have an account? Click <a href="../libralian_login/">LogIn</a> to continue..</p></p>
+			<br>Go to <a href = "../">previous page</a>
+		</form>
+	</div>
+</body>
+</html>

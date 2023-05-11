@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <title>
+        {{app}}
+        </title>
+		{% load static %}
+		  <style>	
+	.cont{
+		width: 100%;
+		min-height: 20vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+	}
+	.search-bar{
+		width:100%;
+		background-color: rgba(180,167,146,0.9);
+		display: flex;
+		align-items: center;
+		border-radius: 60px;
+		padding:10px 20px;
+		max-width:600px;
+	}
+	.search-bar input{
+		background:transparent;
+		flex: 1;
+		border:0;
+		outline:none;
+		padding:14px 16px;
+		font-size:15px;
+		color:black;
+	}
+	
+	::placeholder{
+		color:white;
+	}
+	.search-bar button{
+		padding: 10px;
+		border:0;
+		outline:none;
+		border-radius:70px;
+		color:#71b7e6;
+	}
+   </style>  <style>	
+	.cont{
+		width: 100%;
+		min-height: 20vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+	}
+	.search-bar{
+		width:100%;
+		background-color: rgba(180,167,146,0.9);
+		display: flex;
+		align-items: center;
+		border-radius: 60px;
+		padding:10px 20px;
+		max-width:600px;
+	}
+	.search-bar input{
+		background:transparent;
+		flex: 1;
+		border:0;
+		outline:none;
+		padding:14px 16px;
+		font-size:15px;
+		color:black;
+	}
+	
+	::placeholder{
+		color:white;
+	}
+	.search-bar button{
+		padding: 10px;
+		border:0;
+		outline:none;
+		border-radius:70px;
+		color:#71b7e6;
+	}
+	h1{
+	text-align: center;
+	color: black;
+	font-size: 60px; 
+	font-family: Tempus Sans ITC; 
+	}
+	#bg{
+		background-repeat : no-repeat;
+		background-size : 1650px 750px;
+		background-attachment: fixed;
+	}
+	
+   </style>
+    </head>
+	<body id="bg" style="background-image: url('{% static "blog-inside-post.jpg" %}')">
+    {% comment %} <body bgcolor = ""> {% endcomment %}
+        <div>
+			<h1 >Search for any required book</h1>
+			<form action = "." method = "POST">
+			{% csrf_token %} 
+
+			<div class="cont">
+				  <form action="#" class="search-bar">
+						<span class="details">YourSearch:</span>
+						{{ form.your_search }}
+						<span class="details">By:</span></span>
+						{{ form.by }}
+						
+						<button type="submit">Search</button>
+				  </form>
+			</div>
+
+			
+
+			
+			</form>
+        </div>
+        <div>
+    <table " border = 2 align="center">
+		<tr>
+			<th>No.</th>
+			<th>book_title</th>
+				<th>subject_area</th>
+					<th>author</th>            
+						<th>publication date</th>
+							<th>in stock</th>
+								<th>Borrow</th>
+									<th>Return book</th>
+
+			</tr>
+
+		{% for book in query_set %}
+		<tr style='background-color:{% cycle 'lightblue' 'pink' %}'>
+			{% comment %} <td>{{forloop.counter}}{{book.bk_id}}</td> {% endcomment %}
+			<td>{{book.id}}</td>
+			<td>{{ book.book_title | capfirst }}</td>
+				<td>{{ book.subject_area }}</td>
+					<td>{{ book.author }}</td>
+						<td>{{ book.publication_date }}</td>
+							<td>{{ book.availability }}</td>
+								<td><a href = "/{{app}}/{{user}}/borrow/{{book.id}}">borrow it</a></td>
+									<td><a href = "/{{app}}/{{user}}/return/{{book.id}}">render it returned</a></td>
+
+			   
+		</tr>
+				{% endfor %}
+			</table>
+        </div>
+		<div>
+    See Borrowed books <a href = "borrowed_books_report/"><font color = "black" size = "4" style = "Tempus Sans ITC">report</font></a>
+    <center>add a <a href = "add_book/"><font color = "black" size = "4" style = "Tempus Sans ITC">new Book</font></a></center>
+    Go to <a href = ""><font color = "black" size = "4" style = "Tempus Sans ITC">Log out</font></a><br>
+		</div>
+	</body>
+</html>

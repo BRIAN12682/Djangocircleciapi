@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		{% load static %}
+		<meta charset="UTF-8">
+		<title>KAIROCOMPANY</title>
+		
+		<style>
+			h1{
+				text-align: center;
+				font-color: red;
+				font-size: 80px;
+				font-weight: bold;
+			}
+			
+			p{
+			text-align: center;
+			font-size: 50px;
+			font-weight: bold;
+			}
+			
+			
+			
+			form .button{
+				height:45px;
+				margin: 45px 0;
+			
+			}
+			
+			form .button input{
+				height:100%;
+				width:25% ;
+				outline:none;
+				color:white;
+				background: linear-gradient(135deg, #71b7e6, #9b59b6);
+				font-size:20px;
+				font-weight: 500;
+				letter-spacing: 1px;
+				border-radius: 5px;
+				border:none;
+				margin-left:40%;
+			}
+			form .button input:hover{
+				background: linear-gradient(.135deg, #71b7e6, #9b59b6);
+				
+			}
+			p{
+			text-align: center;
+			font-size:20px;
+			}
+			
+			#bg{
+				background-repeat: no-repeat;
+				background-position: top;
+				
+				background-attachment:fixed;
+			}
+		</style>
+		
+	</head>
+	
+	<body id="bg" style="background-image: url('{% static "lib.jpg" %}')">
+		
+		<h1>KAIRO COMPANY WELCOMES YOU ALL!</h1>
+		<p>An esteemed service provider at your service!!</p>
+		<form action="student/">
+			<div class="button">
+				<label for=></label>
+				<input type="submit" value="STUDENT">
+			</div>
+		</form>
+		
+		<form action="libralian/">
+			<div class="button">
+				<label for=></label>
+				<input type="submit" value="LIBRARIAN">
+			</div>
+		<a href = "admin">visit admin</a>	
+			<p>By choosing either a Student or Librarian, you agree to our <a href="">Terms & Conditions.</a></p>
+		</form>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>
+        {{app}}
+        </title>
+    </head>
+    <body>
+        <div>
+        <font color = "cyan" size = "7" style = "Tempus Sans ITC">find book</font>
+        <form action = "." method = "POST">
+        {% csrf_token %}  {{ form.as_p }}
+
+        {% comment %} By : <input type = "text" name = "By" placeholder = "keystrings"><br>
+        keystrings : <input type = "text" name = "keystrings" placeholder = "keystrings"><br> {% endcomment %}
+        <input type = "submit" value ="Search">
+
+        
+        <form>
+        </div>
+        <div>
+    <table border = 1>
+<tr>
+    <td>No.</td>
+    <th>book_title</th>
+        <th>subject_area</th>
+            <th>author</th>            
+                <th>publication date</th>
+                    <th>in stock</th>
+                        <th>Borrow</th>
+                            <th>Return book</th>
+
+    <tr>
+
+{% for book in query_set %}
+<tr>
+    {% comment %} <td>{{forloop.counter}}{{book.bk_id}}</td> {% endcomment %}
+    <td>{{book.id}}</td>
+    <td>{{ book.book_title }}</td>
+        <td>{{ book.subject_area }}</td>
+            <td>{{ book.author }}</td>
+                <td>{{ book.publication_date }}</td>
+                    <td>{{ book.availability }}</td>
+                        <td><a href = "/{{app}}/{{user}}/borrow/{{book.id}}">borrow it</a></td>
+                            <td><a href = "/{{app}}/{{user}}/return/{{book.id}}">render it returned</a></td>
+
+       
+</tr>
+        {% endfor %}
+    </table>
+        </div>
+    See Borrowed books<a href = "borrowed_books_report/"><font color = "cyan" size = "4" style = "Tempus Sans ITC">report</font></a>
+    <center>add a <a href = "add_book/"><font color = "cyan" size = "4" style = "Tempus Sans ITC">new Book</font></a></center>
+    Go to <a href = "/Homeapp/Home"><font color = "cyan" size = "4" style = "Tempus Sans ITC">Log out</font></a><br>
+    </body>
+</html>

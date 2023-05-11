@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  {% load static %}
+  <title>LogIn</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet"  href="{% static 'register.css'%}">
+</head>
+
+<body>
+	<div class="container">
+		<div class="title">Libralian LogIn</div>
+		<form action="." method = "POST">
+        {% csrf_token %}
+			<div class="user-details">
+				 <div class="input-box">
+					<span class="details">Username</span>
+					{{form.admin_name}}
+{% comment %} 					
+					<input type="text" placeholder="Enter a username" name= "admin_name"> {% endcomment %}
+				</div>
+			    <div class="input-box">
+					<span class="details">Password</span>
+					{{form.admin_password}}
+					{% comment %} <input type="password" placeholder="Enter your Password" name = "admin_password"> {% endcomment %}
+				</div>
+			</div> 
+			<div class="button">
+				<input type="submit" value="LogIn">
+			</div>
+			<p>Don't have an active account? Click <a href="../libralian_signup/">SignUp</a> to sign up.</p>
+			<br>Go to <a href = "../">previous page</a>
+		</form>
+	</div>
+</body>
+</html>

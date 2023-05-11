@@ -1,0 +1,37 @@
+
+{% extends "seach.html" %}
+
+{% block seacrhdiv %}
+
+<h1>REPORT OF BORROWED BOOKS</h1>
+    <table border = 1>
+<tr>
+    <th>no.</th>
+        <th>student numdber</th>
+            <th>student name</th>
+                <th>borrowed book</th>
+                    <th>publication date</th>
+                        <th>borrow date</th>
+                            <th>return date</th>
+                                <th>penalty</th>
+                                    <th>return the book</th>
+    <tr>
+
+{% for x in borrowed_bks %}
+<tr style='background-color:{% cycle 'lightblue' 'pink' %}'>
+    <td>{{forloop.counter}}</td>
+        <td>{{ x.std_number.personal_No }}</td>
+            <td>{{ x.std_number.stdname }}</td>
+                <td>{{ x.bks_id.book_title }}</td>
+                    <td>{{ x.bks_id.publication_date }}</td>
+                        <td>{{ x.borrow_date }}</td>
+                            <td>{{ x.return_date }}</td>
+                                <td>{{x.penalty}}</td>
+                                    {% comment %} <td><a href = "/{{app}}/{{user}}/return/{{x.bks_id.pk}}">render it returned</a></td> {% endcomment %}
+    </tr>
+    
+
+{% endfor %}
+</table>
+<br>Go to <a href = "../">previous page</a>
+{%endblock seacrhdiv %}

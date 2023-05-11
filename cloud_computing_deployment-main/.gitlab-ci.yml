@@ -1,0 +1,67 @@
+## gitlab CI/CD Configuration file.
+
+
+stages:
+  - build
+  - test
+  - release
+  - deploy
+
+build-job:
+  tags:
+    - vm-shell
+  image: python:slim-buster
+  stage: build
+  script:
+    - echo "creating virtual environment for the project..."
+    - virtualenv $(pwd)/venv
+    - source $(pwd)/venv/bin/activate
+    - echo "Installing requirements..."
+    - pip install -r requirements.txt
+    - deactivate
+  artifacts:
+    paths:
+      - $(pwd)/venv
+
+test-job:
+  tags:
+    - vm-shell
+  stage: test
+  script:
+    - echo "Activating virtual environment..."
+    - source $(pwd)/venv/bin/activate
+    - echo "Running unit tests..."
+    - python manage.py test budget
+    - echo "Checking the server..."
+    - python manage.py runserver &&
+    - sleep 10
+    - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
+    - sudo pkill python
+    - deactivate
+    - echo "All tests successfully passed."
+
+variables:
+  CONTAINER_IMAGE: kamurai/djangolibapp:v9 .
+release-job:
+  tags:
+    - vm-shell
+  stage: release
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD 
+  script:
+    - docker build -t $CONTAINER_IMAGE .
+    - docker push $CONTAINER_IMAGE
+  after_script:
+    - docker logout
+
+# Deploy lib application 
+deploy-job:
+  tags:
+    - vm-shell
+  stage: deploy
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY proxmox@192.168.0.137 "
+        docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD &&
+        docker run -d -p 5000:8000 $CONTAINER_IMAGE"

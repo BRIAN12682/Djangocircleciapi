@@ -1,0 +1,36 @@
+# library web application
+
+Library web application(libwapp) is a Python library for dealing with access to available books from the library by the student and provides interaction between the students, librarian and the system itself.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install libwapp.
+
+```bash
+pip install libwapp
+```
+
+## Usage
+
+```python
+import libwapp
+
+# returns 'books'
+libwapp.search('book')
+
+# returns 'english textbook'
+libwapp.search('available')
+#This is when the book you are searching for is there in the library
+
+# returns 'science txt book'
+libwapp.search('taken')
+```
+#This pops up when the book exists in the library but has been issued out
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -1,0 +1,23 @@
+version : "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - 8000:8000
+    image: app:codding
+    container_name: code_container
+    command: python manage.py runserver 0.0.0.0:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:8
+    volumes:
+      ["./data/mysql/dbb:/var/lib/mysql",]
+    environment:
+      MYSQL_DATABASE: django-lib-db
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    container_name: mysql_db

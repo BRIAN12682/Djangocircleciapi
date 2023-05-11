@@ -1,0 +1,31 @@
+body{
+	
+	color:blue;
+	margin:10px;
+	font-family: Arial Black, Gadget, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	text-align: center;
+}
+
+#bg{
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size:1100px 650px;
+	background-attachment:fixed;
+}
+
+.sign{
+	font-family: Arial Black, Gadget, sans-serif;
+	font-size:20px;
+	color:green;
+}
+
+.bio1{
+	color: black;
+	font-weight: normal;
+	
+}
+title{
+	color: green;
+}

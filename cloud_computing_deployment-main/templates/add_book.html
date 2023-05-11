@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>
+        Group K
+        </title>
+</head>
+    <body>
+        <div><center>
+                <font color = "cyan" size = "7" style = "Tempus Sans ITC">Add book
+                </font>
+                    <form action = "." method = "POST">
+                        {% csrf_token %}  {{ form.as_p }}
+                        <input type = "submit" value ="ADD">
+                    <form>
+
+        </div>
+        Go to <a href = "../">previous page</a>
+    </body>
+</html>
