@@ -20,7 +20,6 @@ jobs:
           command: python manage.py test
       - store_test_results:
           path: test_results
-
 workflows:
   build-and-test-workflow:
     jobs:
